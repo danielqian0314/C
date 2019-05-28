@@ -1,0 +1,132 @@
+% !TEX TS-program = pdflatex
+% !TEX encoding = UTF-8 Unicode
+
+% This is a simple template for a LaTeX document using the "article" class.
+% See "book", "report", "letter" for other types of document.
+
+\documentclass[11pt]{article} % use larger type; default would be 10pt
+
+\usepackage[utf8]{inputenc} % set input encoding (not needed with XeLaTeX)
+
+%%% Examples of Article customizations
+% These packages are optional, depending whether you want the features they provide.
+% See the LaTeX Companion or other references for full information.
+
+%%% PAGE DIMENSIONS
+\usepackage{geometry} % to change the page dimensions
+\geometry{a4paper} % or letterpaper (US) or a5paper or....
+% \geometry{margin=2in} % for example, change the margins to 2 inches all round
+% \geometry{landscape} % set up the page for landscape
+%   read geometry.pdf for detailed page layout information
+
+\usepackage{graphicx} % support the \includegraphics command and options
+
+% \usepackage[parfill]{parskip} % Activate to begin paragraphs with an empty line rather than an indent
+
+%%% PACKAGES
+\usepackage{booktabs} % for much better looking tables
+\usepackage{array} % for better arrays (eg matrices) in maths
+\usepackage{paralist} % very flexible & customisable lists (eg. enumerate/itemize, etc.)
+\usepackage{verbatim} % adds environment for commenting out blocks of text & for better verbatim
+\usepackage{subfig} % make it possible to include more than one captioned figure/table in a single float
+\usepackage[fleqn]{amsmath}
+\usepackage{amsfonts}
+% These packages are all incorporated in the memoir class to one degree or another...
+
+%%% HEADERS & FOOTERS
+\usepackage{fancyhdr} % This should be set AFTER setting up the page geometry
+\pagestyle{fancy} % options: empty , plain , fancy
+\renewcommand{\headrulewidth}{0pt} % customise the layout...
+\lhead{}\chead{}\rhead{}
+\lfoot{}\cfoot{\thepage}\rfoot{}
+
+%%% SECTION TITLE APPEARANCE
+\usepackage{sectsty}
+\allsectionsfont{\sffamily\mdseries\upshape} % (See the fntguide.pdf for font help)
+% (This matches ConTeXt defaults)
+
+%%% ToC (table of contents) APPEARANCE
+\usepackage[nottoc,notlof,notlot]{tocbibind} % Put the bibliography in the ToC
+\usepackage[titles,subfigure]{tocloft} % Alter the style of the Table of Contents
+\renewcommand{\cftsecfont}{\rmfamily\mdseries\upshape}
+\renewcommand{\cftsecpagefont}{\rmfamily\mdseries\upshape} % No bold!
+
+%%% END Article customizations
+
+%%% The "real" document content comes below...
+
+\title{Assignment H1 - Solution}
+\author{Gong,Zhaowen	3305359 \\
+        He,Jiayu	3300561 \\
+        Qian,Dongcheng	3302747}
+
+%\date{} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+
+\begin{document}
+\maketitle
+
+\section{Problem 1 (Discrete Convolution)}
+
+Solution:\\
+\begin{flalign}
+\begin{split}
+(f*f)_i  & = \sum_{k=-\infty}^{+\infty}f_{i-k} \cdot f_k  \\
+         & = f_{i-0} \cdot f_0 + f_{i-1} \cdot f_1  \\
+		& = \frac 12 f_i + \frac 12 f_{i-1}\\ 
+\\
+(f*(f*f)_i)_i  & = \sum_{k=-\infty}^{+\infty}f_{i-k} \cdot (\frac 12 f_k + \frac 12 f_{k-1})  \\
+         & = f_{i-0} \cdot \frac 12 f_0 + f_{i-1} \cdot (\frac 12 f_1 + \frac 12 f_0) + \frac 12 f_{i-2} \cdot \frac 12 f_1  \\
+		& = \frac 14 f_i + \frac 12 f_{i-1} + \frac 14 f_{i-2}\\ 
+\nonumber
+\end{split}&
+\end{flalign}
+\section{Problem 2 (Properties of the Convolution )}
+
+Solution:\\
+\\
+a) Linearity:\\
+\begin{flalign}
+\begin{split}
+(\alpha \cdot f + \beta \cdot g)*\omega &= \sum_{k=-\infty}^{+\infty}(\alpha \cdot f_{i-k}+\beta \cdot g_{i-k})\cdot \omega_k\\
+&= \alpha \cdot \sum_{k=-\infty}^{+\infty} f_{i-k} \cdot \omega_k + \beta \cdot \sum_{k=-\infty}^{+\infty} g_{i-k} \cdot \omega_k\\
+&= \alpha \cdot (f*\omega) + \beta \cdot (g*\omega) \qquad for \; all \; \alpha,\beta \in \mathbb{R}\\
+\nonumber
+\end{split}&
+\end{flalign}
+b) Commutativity:\\
+\begin{flalign}
+\begin{split}
+f*\omega &= \sum_{k=-\infty}^{+\infty}f_{i-k} \cdot \omega_k = \sum_{k=-\infty}^{+\infty} \omega_k \cdot f_{i-k}\\
+\nonumber
+\end{split}&
+\end{flalign}
+define $\quad n:=i-k\qquad n\in \mathbb{Z}$
+\begin{flalign}
+\begin{split}
+\sum_{k=-\infty}^{+\infty} \omega_k \cdot f_{i-k}&= \sum_{i-n=-\infty}^{+\infty} \omega_{i-n} \cdot f_n\\
+&= \sum_{n=i+\infty}^{i-\infty} \omega_{i-n} \cdot f_n\\
+&= \sum_{n=-\infty}^{+\infty} \omega_{i-n} \cdot f_n\\ &= \omega * f\\
+\nonumber
+\end{split}&
+\end{flalign}
+c) Identity:
+\begin{flalign}
+\begin{split}
+f*e &= \sum_{k=-\infty}^{+\infty}f_{i-k}\cdot e_k=f_i\\
+e_i &= \left\{ \begin{array}{ll}
+1 & \textrm{$(i=0)$}\\
+0 & \textrm{(else)}
+\end{array} \right.
+\nonumber
+\end{split}&
+\end{flalign}
+
+
+
+
+
+
+
+
+\end{document}
